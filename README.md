@@ -9,7 +9,7 @@
 <img src="https://github.com/5BG/JingBaoWeb/blob/master/image/MainPage.png" alt="Menu" width="700" height="350"/>
 <h4>Customer</h4>
 <img src="https://github.com/5BG/JingBaoWeb/blob/master/image/Customer.png" alt="Menu" width="700" height="300"/>
-<img src="https://github.com/5BG/JingBaoWeb/blob/master/image/CustomerAdd.png" alt="Menu" width="700" height="400"/>
+<img src="https://github.com/5BG/JingBaoWeb/blob/master/image/CustomerAdd.png" alt="Menu" width="600" height="350"/>
 <img src="https://github.com/5BG/JingBaoWeb/blob/master/image/CustomerEdit.png" alt="Menu" width="600" height="350"/>
 <img src="https://github.com/5BG/JingBaoWeb/blob/master/image/CustomerDetete.png" alt="Menu" width="600" height="350"/>
 
