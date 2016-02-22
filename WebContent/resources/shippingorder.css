@@ -1,0 +1,46 @@
+@CHARSET "UTF-8";
+
+span.z-toolbarbutton-content{
+	font-size: 14px;  
+}
+
+.z-listbox 
+{ 
+	background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid silver; 
+    overflow: hidden; 
+}
+
+.z-listheader
+{ 
+	background:#1E90FF	
+}
+
+.z-listheader-content
+{ 
+	font-family: "Tahoma", verdana, arial, sans-serif;
+	font-size: 16px;
+	color: #FFFFFF;	
+}
+
+.z-listcell-content
+{ 
+	
+	font-family: "Tahoma", verdana, arial, sans-serif;
+	font-size: 14px;
+	color: black; 
+}
+
+.z-textbox-content
+{
+	font-size: 18px;
+}
+.z-datebox
+{
+	
+}
+
+.z-borderlayout
+{
+	border: 1px solid silver;
+}

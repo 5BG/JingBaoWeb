@@ -1,0 +1,21 @@
+<?page title="精堡工業股份有限公司" contentType="text/html;charset=UTF-8"?>
+<zk>
+
+<div height="450px" apply="tw.com.jingbao.menu.FisheyeMenuController">
+<style>
+  .fisheyeDemo { 
+      margin : 5px 40px; 
+      position : relative;
+  }
+</style>
+<timer id="timerKeepAliveSession" repeats="true" delay="600000" onTimer=""/>    
+<image src="/resources/image/jb logo.png" width="550px"/>
+	
+    <fisheyebar id="fisheyebar" sclass="fisheyeDemo"
+        itemWidth="80" itemHeight="80" itemMaxHeight="160" itemMaxWidth="160">
+        <fisheye label="客戶" image="/resources/image/customer.png" />
+        <fisheye label="出貨單" image="/resources/image/order.png" />
+        <fisheye label="會計" image="/resources/image/accounting.png" />
+    </fisheyebar>
+</div>
+</zk>

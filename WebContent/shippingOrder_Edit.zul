@@ -1,0 +1,62 @@
+<?page id = "shippingOrderEditPage" title="出貨單編輯" contentType="text/html;charset=UTF-8"?>
+<?link rel="stylesheet" type="text/css" href="style.css"?>
+
+<zk xmlns:w="http://www.zkoss.org/2005/zk/client" xmlns:n="native" >
+<window id= "editDialog" title="出貨單編輯" border="normal" width="850px" 
+apply= "tw.com.jingbao.shippingorder.controller.ShippingOrderDetailController"
+closable="true" position="center" mode="modal"  contentStyle="overflow:auto">
+<!-- 宣告外部 css設定來源 -->
+<style src="/resources/tab.css" /> 
+<style src="/resources/shippingorder.css" /> 
+<space bar="false" spacing="20px" />
+<timer id="timerKeepAliveSession" repeats="true" delay="600000" onTimer=""/>
+<div>
+	<grid id="maingrid">
+		<rows>
+			<row>
+				<label value="出貨日期"  width="50px" />
+					<datebox id="shippingDate" width="150px" />
+                <label value="" width="0" />
+                <label value="出貨單號" width="150px" />
+                	<textbox id="SDNO" width="150px" />
+			</row>
+			<row>
+                <label value="出貨客戶代號"  width="60px" />
+                	<textbox id="shipToCustomerID" width="150px" />
+                <button id = "btnPass" label="...." 
+        			style="position: static;border:thin solid black background:transparent;font-size: 12px;"/>
+         	
+                <label value="出貨客戶名稱"  width="70px" />
+                	<textbox id="shipToCustomerName" width="150px" />
+			</row>
+		</rows>
+	</grid>
+</div>
+<space bar="false" spacing="20px" />
+<div apply="org.zkoss.bind.BindComposer" viewModel="@id('vm')
+		@init('tw.com.jingbao.shippingorder.viewmodel.ShippingOrderViewModel')">
+	<tabbox id= "tailTab" width="100%" sclass="nav_tabs" onSelect="">
+	        <tabs id="tabs" sclass="Tab">
+	            <tab id="tabShippingOrder" label="出貨資料" />
+	        </tabs>
+	        <tabpanels>
+	            <tabpanel>
+		             <include src= "shippingOrderTabOrderDetail.zul" />
+	            </tabpanel>
+	        </tabpanels>
+	</tabbox>
+</div>
+<space bar="false" spacing="20px" />
+<div id="tailButton" align="center">
+   <hlayout>
+       <label visible=""
+           value="" />
+       <button id = "btnTailSubmit" label="確認" width="100px" height="30px"                                                        
+       style="position: static;border:thin solid black background:transparent;margin-right:10px;font-size: 12px;" />
+       <button id = "btnTailCancel" label="取消" width="100px" height="30px" 
+        style="position: static;border:thin solid black background:transparent;margin-right:10px;font-size: 12px;"/>
+         
+   </hlayout>
+</div>
+</window>
+</zk>

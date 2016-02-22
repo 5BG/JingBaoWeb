@@ -1,0 +1,51 @@
+<?page id = "customerPage" title="客戶維護" contentType="text/html;charset=UTF-8"?>
+<?link rel="stylesheet" type="text/css" href="style.css"?>	
+<zk xmlns:w="http://www.zkoss.org/2005/zk/client" xmlns:n="native" >
+ 
+<window id="customer" title="客戶維護" border="normal" width="50%" height="50%" mode="modal"  closable="true" maximizable="true"
+	apply="org.zkoss.bind.BindComposer" viewModel="@id('vm')  @init('tw.com.jingbao.customer.controller.CustomerController')"
+		contentStyle="overflow:auto">
+<!-- 宣告外部 css設定來源 -->
+<style src="/resources/shippingorder.css" />
+<timer id="timerKeepAliveSession" repeats="true" delay="600000" onTimer=""/>
+<hlayout>
+    Export Report to <button label="PDF" forward='onShowReport(pdf)' />
+</hlayout>
+<div>
+	<toolbar hflex="true">
+        <toolbarbutton label="查詢" tooltiptext="Search" />
+        <toolbarbutton label="更新" tooltiptext="Refresh" onClick="@command('action_Refresh')"/>
+        <toolbarbutton label="新增" tooltiptext="Add"  onClick="@command('action_Add')" />
+        <toolbarbutton label="修改" tooltiptext="Update" onClick="@command('action_Update')" />
+        <toolbarbutton label="刪除" tooltiptext="Delete" onClick="@command('action_Delete')" />
+     </toolbar>
+</div>
+<listbox id= "listbox" model="@load(vm.customerList)" 
+selectedItem="@bind(vm.selectedCustomer)" multiple="true" onDoubleClick= "@command('onDoubleClicked')"
+vflex="true" height="100%" mold="paging" pageSize="4">
+
+	<auxhead>
+		<auxheader label="客戶名單" colspan="6" />
+	</auxhead>
+	<listhead> 
+		<listheader label="客戶代號" sort="auto(customerID)" />
+		<listheader label="客戶名稱" /> 
+		<listheader label="客戶電話" /> 
+		<listheader label="客戶傳真" /> 
+		<listheader label="客戶地址" />
+		<listheader label="備註" />
+	</listhead>
+	 <template name="model" var="customer">
+          <listitem>
+              <listcell label="@bind(customer.customerID)" />
+              <listcell label="@bind(customer.customerName)" />
+              <listcell label="@bind(customer.customerPhone)" />
+              <listcell label="@bind(customer.customerFax)" />
+              <listcell label="@bind(customer.customerAddress)" />
+              <listcell label="@bind(customer.remark)" />
+           </listitem>
+     </template>
+</listbox>
+  
+</window>
+</zk>

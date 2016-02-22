@@ -1,0 +1,45 @@
+<?page title="出貨單主檔" contentType="text/html;charset=UTF-8"?>
+	
+<zk xmlns:w="http://www.zkoss.org/2005/zk/client" xmlns:n="native" >
+<!-- 宣告外部 css設定來源 -->
+<style src="/resources/shippingorder.css" /> 
+
+<window id="win" title="出貨單" border="normal" width="50%" height="50%" mode="modal"  closable="true" maximizable="true"
+apply="org.zkoss.bind.BindComposer" viewModel="@id('vm')  
+		@init('tw.com.jingbao.shippingorder.controller.ShippingOrderController')" contentStyle="overflow:auto">
+<timer id="timerKeepAliveSession" repeats="true" delay="600000" onTimer=""/>
+<div>
+	<toolbar hflex="true">
+        <toolbarbutton label="查詢" tooltiptext="Search" />
+        <toolbarbutton label="更新" tooltiptext="Refresh" onClick="@command('action_Refresh')"/>
+        <toolbarbutton label="新增" tooltiptext="Add"  onClick="@command('action_Add')" />
+        <toolbarbutton label="修改" tooltiptext="Update" onClick="@command('action_Update')" />
+        <toolbarbutton label="刪除" tooltiptext="Delete" onClick="@command('action_Delete')" />
+     </toolbar>
+</div>
+
+<listbox id= "shippingOrderList" model="@load(vm.shippingOrdersList)" 
+selectedItem="@bind(vm.selectedShippingOrder)" onDoubleClick= "@command('onDoubleClicked')" multiple="true"
+vflex="true" height="100%" mold="paging" pageSize="5">
+
+	<auxhead>
+		<auxheader label="銷貨出貨單" colspan="4" />
+	</auxhead>
+	<listhead sizable="true"> 
+		<listheader label="出貨訂單號" sort="auto(SDNO)" />
+		<listheader label="出貨日期" /> 
+		<listheader label="出貨客戶代號" /> 
+		<listheader label="出貨客戶名稱" />
+	</listhead>
+	 <template name="model" var="order">
+          <listitem>
+              <listcell label="@bind(order.SDNO)" />
+              <listcell label="@bind(order.shippingDate)" />
+              <listcell label="@bind(order.shipToCustomerID)" />
+              <listcell label="@bind(order.shipToCustomerName)" />
+           </listitem>
+     </template>
+</listbox>
+<button action="">Back</button>
+</window>
+</zk>

@@ -1,0 +1,25 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window id="test" title="new page title" border="normal">
+<script type="text/javascript">
+function PopUp(){
+	window.open("./customer.zul?data_handler=PopUpHandler);
+}
+
+function PopUpHandler(strIDs){
+    var objIDList = document.forms[ 0 ].shipToCustomerID;
+
+    // Set the ID list.
+    objIDList.value = (
+        objIDList.value +
+        (objIDList.value.length > 0 ? "," : "" ) +
+        strIDs
+        );
+}
+</script>
+<textbox id="itemID" width= "150px"/>
+<button id = "btnPass" label="...." width="25px" height="25px" onClick='Clients.evalJavaScript("PopUp()")'
+        		style="position: static;border:thin solid black background:transparent;font-size: 12px;"/>
+         
+</window>
+</zk>

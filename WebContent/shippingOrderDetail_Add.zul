@@ -1,0 +1,76 @@
+<?page id = "orderDetailEdit" title="orderDetailEdit" contentType="text/html;charset=UTF-8"?>
+<zk>
+<zscript><![CDATA[
+import java.math.BigDecimal;
+
+	public void btnCancel(){
+		orderDetailAdd.detach();
+	}
+
+	public void getTotal(){
+		Doublebox txtTotal = (Doublebox) Path.getComponent("/orderDetailAdd/total");
+		Doublebox txtQuantity = (Doublebox) Path.getComponent("/orderDetailAdd/quantity");
+		Doublebox txtUnitPrice = (Doublebox) Path.getComponent("/orderDetailAdd/unitPrice");
+		BigDecimal detailToal = new BigDecimal(txtQuantity.getValue()).multiply(new BigDecimal(txtUnitPrice.getValue()));
+	 	txtTotal.setText(detailToal.toPlainString());
+	 	System.out.println("getTotal: " +txtQuantity.getText());
+	 	System.out.println("getTotal: " +txtUnitPrice.getText());
+	}
+
+]]></zscript>
+<window id="orderDetailAdd" title="出貨明細資料新增" width="400px" border="normal" closable="true"
+	 apply="org.zkoss.bind.BindComposer,tw.com.jingbao.shippingorder.controller.ShippingOrderTabProductComposer"
+	 viewModel="@id('vm') @init('tw.com.jingbao.shippingorder.viewmodel.ShippingOrderViewModel')" > 
+	 <timer id="timerKeepAliveSession" repeats="true" delay="600000" onTimer=""/>
+	<div>
+	<groupbox form="@id('itm') @load(vm.selectedShippingOrderDetail)"
+	 visible="@load(not empty vm.selectedShippingOrderDetail)" mold="3d">
+	 <caption label="Item"></caption>
+		<grid>
+			<rows>
+				 <row>
+	                出貨品代號:
+	                <textbox id="itemID" value="@bind(vm.itemID)" width="150px"
+	                 onFocus="getTotal()"/>
+	            </row>
+				 <row>
+	                出貨品名稱:
+	                <textbox id="itemName" value="@bind(vm.itemName)" width="150px"
+	                 onFocus="getTotal()"/>
+	            </row>
+	            <row>
+               		出貨數量:
+                	<doublebox id="quantity" value="@bind(vm.quantity)" format=",###.##" style="text-align:right" width="150px"
+                     constraint="no empty,no negative" onFocus="getTotal()" >
+                     </doublebox>
+                 </row>
+                 <row>
+	                單位:
+	                <textbox id="unit" value="@bind(vm.unit)" width="150px" 
+	                  onFocus="getTotal()"/>
+	            </row>
+	            <row>
+               		出貨單價:
+                	<doublebox id="unitPrice" value="@bind(vm.unitPrice)" format=",###.##" style="text-align:right" width="150px"
+                    constraint="no empty,no negative" onFocus="getTotal()" onChanging="getTotal()" >
+                    </doublebox>
+                </row>
+	            <row>
+               		總價:
+                	<doublebox id="total"  value="@bind(vm.total)" format=",###.##" style="text-align:right" width="150px"
+                    readonly="true"></doublebox>
+                </row>
+	        </rows>
+		</grid>
+		</groupbox>
+		<space bar="false" spacing="20px" />
+		<div align="center">
+		 <hlayout>
+			<button id = "btnSubmit" label="確認" width="100px" height="30px" onClick="@command('btnSubmit')"/>
+	        <button id = "btnClear" label="清除" width="100px" height="30px" onClick="@command('btnClear')"/>
+	        <button id = "btnCancel" label="取消" width="100px" height="30px" onClick="@command('btnCancel')"/>
+	     </hlayout>
+         </div>
+	</div>
+</window>
+</zk>

@@ -1,0 +1,58 @@
+<?page title="客戶維護" contentType="text/html;charset=UTF-8"?>
+<zk>
+<zscript><![CDATA[
+public void btnCancel(){
+	customerAdd.detach();
+}
+
+]]></zscript>
+<window id="customerAdd" title="CustomerDialog" width="600px" border="normal" closable="true" position="center" mode="modal" 
+	apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') 
+		@init('tw.com.jingbao.customer.controller.CustomerController')" contentStyle="overflow:auto">
+	<separator />
+	<timer id="timerKeepAliveSession" repeats="true" delay="600000" onTimer=""/>
+	<div>
+	<groupbox mold="3d">
+	 <caption label="Customer"></caption>
+		<grid>
+			<rows>
+				 <row>
+	                <label value="客戶代號:" width="30px"/>
+	                	<textbox id="customerID" value= "@bind(vm.selectedCustomer.customerID)" width="150px"/>
+               	</row>
+               	<row>
+	                <label value="客戶名稱:"  width="30px"/>
+	                	<textbox id="customerName" value= "@bind(vm.selectedCustomer.customerName)" width="150px"/>
+               	</row>
+               	<row>
+	                <label value="客戶電話:"  width="30px" />
+	                	<textbox id="customerPhone" value= "@bind(vm.selectedCustomer.customerPhone)" width="150px" />
+               	</row>
+				
+				 <row>
+	                <label value="客戶傳真:"  width="30px" />
+	                	<textbox id="customerFax"  value= "@bind(vm.selectedCustomer.customerFax)" width="150px" />
+               	</row>
+               	<row>
+	                <label value="客戶地址:"  width="30px" />
+	                	<textbox id="customerAddress" value= "@bind(vm.selectedCustomer.customerAddress)" width="250px" />
+            	</row>
+            	<row>
+	                <label value="備註:"  width="30px" />
+	                	<textbox id="remark" value= "@bind(vm.selectedCustomer.remark)" width="250px" />
+               	</row>
+			</rows>
+		</grid>
+	</groupbox>
+	</div>
+	<space bar="false" spacing="20px" />
+	<div align="center">
+	 <hlayout>
+		<button id = "btnSubmit" label="確認" width="100px" height="30px" onClick="@command('btnSubmit')"/>
+        <button id = "btnClear" label="清除" width="100px" height="30px" onClick="@command('btnClear')"/>
+        <button id = "btnCancel" label="取消" width="100px" height="30px" onClick="@command('btnCancel')"/>
+     </hlayout>
+        </div>
+	
+</window>
+</zk>

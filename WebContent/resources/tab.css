@@ -1,0 +1,11 @@
+@CHARSET "UTF-8";
+
+.Tab .z-tab-text { 
+    font-weight: bold; color: #9c9c9c; font-size: 14px;
+} 
+.z-toolbarbutton-cnt, .z-toolbar-tabs { 
+    padding: 0; text-align: center; font-weight: bold; font-size: 10px;color: #9c9c9c; 
+}
+
+.nav_toolbar .z-toolbarbutton-content i { font-size: 12px;}
+

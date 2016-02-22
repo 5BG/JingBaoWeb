@@ -1,0 +1,39 @@
+<?page title="orderDetail" contentType="text/html;charset=UTF-8"?>
+<zk>
+
+<!-- 宣告外部 css設定來源 -->
+
+<timer id="timerKeepAliveSession" repeats="true" delay="600000" onTimer=""/>
+ <div id="detail_ToolBar" sclass="nav_toolbar">
+    <toolbar hflex="true">
+        <toolbarbutton label="新增"  id="detail_add" onClick="@command('detail_add')" />
+        <toolbarbutton label="修改" id="detail_update" onClick="@command('detail_update')" />
+        <toolbarbutton label="刪除" id="detail_delete" onClick="@command('detail_delete')" />
+    </toolbar>
+  </div>   
+  <div height="200px" style="overflow: auto">
+    <listbox id="detailList" 
+       	sizedByContent="false" width="100%" span="0,2" multiple="false" rows="5"
+       	model="@load(vm.orderDetailModel)" emptyMessage="無資料" hflex="min"
+       	selectedItem="@bind(vm.selectedShippingOrderDetail)">
+	<listhead sizable="true">
+		<listheader label="出貨品代號" sort="auto(itemID)" />
+		<listheader label="貨品名稱" />
+		<listheader label="出貨數量" />
+		<listheader label="單位" />
+		<listheader label="出貨單價" />
+		<listheader label="總價" />
+	</listhead>
+	<template name="model" var="detailOrder" >
+	<listitem>
+		<listcell label="@bind(detailOrder.itemID)"/> 
+		<listcell label="@bind(detailOrder.itemName)"/> 
+		<listcell label="@bind(detailOrder.quantity)"/> 
+		<listcell label="@bind(detailOrder.unit)"/> 
+		<listcell label="@bind(detailOrder.unitPrice)"/> 
+		<listcell label="@bind(detailOrder.total)"/> 
+	</listitem> 
+	</template>
+</listbox>
+</div>
+</zk>
